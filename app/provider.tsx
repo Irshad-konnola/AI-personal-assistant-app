@@ -1,16 +1,18 @@
 "use client"
 import React from 'react'
 import { ThemeProvider as NextThemesProvider } from "next-themes"
-
+import { GoogleOAuthProvider } from '@react-oauth/google';
 function Provider({
       children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
+    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}>      {/* exclamatory symbol becuase it is typescript */}
+ 
     <NextThemesProvider
      attribute="class"
-            defaultTheme="system"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
     >
@@ -18,6 +20,7 @@ function Provider({
       {children}
     </div>
     </NextThemesProvider>  
+    </GoogleOAuthProvider>
   )
 }
 
